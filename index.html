@@ -1,0 +1,10 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pay</title></head>
+<body style="font-family:sans-serif;text-align:center;padding:2em">
+<p id="m">Opening your payment app...</p><p><a id="a" href="#">Tap here if nothing opens</a></p>
+<script>
+// No payee data lives on this page: everything comes from the URL fragment after '#' (pa, pn, am, cu),
+// which browsers never send to the host. '?' links still work as a fallback.
+var q=location.hash?"?"+location.hash.slice(1):location.search, u="upi://pay"+q;
+if(/[?&]pa=[^&@]+@[^&]+/.test(q)){document.getElementById("a").href=u;location.replace(u);}
+else{document.getElementById("m").textContent="Invalid pay link.";}
+</script></body></html>
