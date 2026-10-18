@@ -5,6 +5,6 @@
 // No payee data lives on this page: everything comes from the URL fragment after '#' (pa, pn, am, cu),
 // which browsers never send to the host. '?' links still work as a fallback.
 var q=location.hash?"?"+location.hash.slice(1):location.search, u="upi://pay"+q;
-if(/[?&]pa=[^&@]+@[^&]+/.test(q)){document.getElementById("a").href=u;location.replace(u);}
+if(/[?&]pa=[^&@]+(@|%40)[^&]+/i.test(q)){document.getElementById("a").href=u;location.replace(u);}
 else{document.getElementById("m").textContent="Invalid pay link.";}
 </script></body></html>
